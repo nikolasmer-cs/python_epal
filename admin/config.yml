@@ -1,0 +1,52 @@
+backend:
+  name: github
+  repo: nikolasmer-cs/python_epal
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  # ΣΥΛΛΟΓΗ ΓΙΑ ΤΗ ΘΕΩΡΙΑ
+  - name: "chapters"
+    label: "Βασική Θεωρία"
+    folder: "content/chapters"
+    create: true
+    fields:
+      - {label: "Τίτλος", name: "title", widget: "string"}
+      - {label: "Κείμενο Θεωρίας", name: "body", widget: "markdown"}
+
+  # ΣΥΛΛΟΓΗ ΓΙΑ ΑΣΚΗΣΕΙΣ
+  - name: "exercises"
+    label: "Ασκήσεις & Εκφωνήσεις"
+    folder: "content/exercises"
+    create: true
+    fields:
+      - {label: "Τίτλος Άσκησης", name: "title", widget: "string"}
+      - {label: "Εκφώνηση", name: "description", widget: "markdown"}
+      - {label: "Λύση (Κώδικας Python)", name: "solution", widget: "code", default_language: "python"}
+      - {label: "Επίπεδο Δυσκολίας", name: "difficulty", widget: "select", options: ["Εύκολο", "Μέτριο", "Δύσκολο"]}
+
+  # ΣΥΛΛΟΓΗ ΓΙΑ ΚΟΥΙΖ
+  - name: "quizzes"
+    label: "Κουίζ (Self-Test)"
+    folder: "content/quizzes"
+    create: true
+    fields:
+      - {label: "Όνομα Κουίζ", name: "title", widget: "string"}
+      - {label: "Ερωτήσεις", name: "questions", widget: "list", fields:
+          - {label: "Ερώτηση", name: "question", widget: "string"}
+          - {label: "Επιλογές (χωρίστε με κόμμα)", name: "options", widget: "list"}
+          - {label: "Σωστή Απάντηση", name: "correct", widget: "string"}
+        }
+
+  # ΣΥΛΛΟΓΗ ΓΙΑ ΔΙΑΓΩΝΙΣΜΑΤΑ
+  - name: "exams"
+    label: "Διαγωνίσματα (PDF ή Text)"
+    folder: "content/exams"
+    create: true
+    fields:
+      - {label: "Τίτλος Διαγωνίσματος", name: "title", widget: "string"}
+      - {label: "Ημερομηνία", name: "date", widget: "datetime"}
+      - {label: "Θέματα", name: "body", widget: "markdown"}
+      - {label: "Αρχείο (Προαιρετικό)", name: "file", widget: "file"}
